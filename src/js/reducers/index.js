@@ -2,11 +2,18 @@ import {
   ADD_ELEMENT,
   REMOVE_ELEMENT,
   REQUEST,
-  FETCH_STATUS,
+  ZOOM_IN,
+  ZOOM_OUT,
+  REFRESH,
 } from "../constants/action-types";
 
 const initialState = {
   isFetching: false,
+  zoom: {
+    w: 237.0,
+    h: 331.0,
+  },
+
   elements: [
     {
       id: 12,
@@ -16,9 +23,27 @@ const initialState = {
 };
 
 function elements(state = initialState, action) {
+  let zW, zH;
   switch (action.type) {
+    case ZOOM_IN:
+      zW = state.zoom.w += (state.zoom.w / 100) * 5;
+      zH = state.zoom.h += (state.zoom.h / 100) * 5;
+      return Object.assign({}, state, {
+        zoom: {
+          w: zW,
+          h: zH,
+        },
+      });
+    case ZOOM_OUT:
+      zW = state.zoom.w -= (state.zoom.w / 100) * 5;
+      zH = state.zoom.h -= (state.zoom.h / 100) * 5;
+      return Object.assign({}, state, {
+        zoom: {
+          w: zW,
+          h: zH,
+        },
+      });
     case REQUEST:
-      console.log("request");
       return Object.assign({}, state, {
         isFetching: true,
       });

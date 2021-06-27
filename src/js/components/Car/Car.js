@@ -4,15 +4,13 @@ import CarElement from "./CarElement";
 import store from "../../store";
 import { addEl, removeElement } from "../../actions";
 
-function check() {
-  let els = store.getState().elements;
-  for (let i = 0; i < els.length; i++) {
-    let id = els[i].id.toString().replace("#", "");
-    let el = document.getElementById(id);
-    el && el.setAttribute("stroke", "#F2C94C");
-  }
-}
 function Car() {
+  function scale() {
+    return "scale(" + store.getState().zoom + ",1.0)";
+  }
+  function hover(e) {
+    e.target.setAttribute("style", "cursor: pointer");
+  }
   function addClick(e) {
     let element = e.target.nextSibling;
     store.dispatch(
@@ -20,10 +18,9 @@ function Car() {
         id: element.getAttribute("xlink:href"),
         title: element.getAttribute("title")
           ? element.getAttribute("title")
-          : "test",
+          : element.getAttribute("xlink:href"),
       })
     );
-    //check();
   }
 
   return (
@@ -35,12 +32,16 @@ function Car() {
       viewBox="0 0 237 331"
     >
       <g transform="translate(-7510 -4816)">
-        <g onClick={addClick}>
+        <g onClick={addClick} onMouseOver={hover}>
           <CarElement
             svg={
               <g transform="translate(7511 4858.89)">
                 <use fill="#FFF" xlinkHref="#path0_fill"></use>
-                <use fill="#7C7E8F" xlinkHref="#path1_stroke"></use>
+                <use
+                  fill="#7C7E8F"
+                  xlinkHref="#path1_stroke"
+                  title="LFWheel"
+                ></use>
               </g>
             }
           />

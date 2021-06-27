@@ -8,7 +8,7 @@ const ElementsList = ({ elements, onElementClick }) => (
       elements.map((element, index) => (
         <Element
           key={element.id}
-          id={element.id}
+          idx={index}
           {...element}
           onClick={() => onElementClick(element.id)}
         />

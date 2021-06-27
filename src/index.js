@@ -14,7 +14,7 @@ console.log(store.getState());
 //store.dispatch(addEl({ id: 1, title: "test" }));
 //store.dispatch(addElement({ id: 2, title: "test2" }));
 //store.dispatch(addElement({ id: 3, title: "test3" }));
-console.log(store.getState());
+//console.log(store.getState());
 //store.dispatch(removeElement({ id: 1, title: "test" }));
 //console.log(store.getState());
 
@@ -24,3 +24,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+window.store = store;

@@ -3,7 +3,29 @@ import {
   ADD_ELEMENT,
   REMOVE_ELEMENT,
   REQUEST,
+  ZOOM_IN,
+  ZOOM_OUT,
 } from "../constants/action-types";
+import store from "../store";
+
+function refresh(svg) {
+  svg.height.baseVal.value = store.getState().zoom.h;
+  svg.width.baseVal.value = store.getState().zoom.w;
+}
+
+export function zoomIn(svg) {
+  refresh(svg);
+  return {
+    type: ZOOM_IN,
+  };
+}
+
+export function zoomOut(svg) {
+  refresh(svg);
+  return {
+    type: ZOOM_OUT,
+  };
+}
 
 export function addEl(data) {
   return (dispatch, getState) => {
@@ -21,11 +43,11 @@ export function addElement(data) {
 }
 
 export function removeElement(data) {
+  unpaintElement(data);
   return { type: REMOVE_ELEMENT, id: data.id, title: data.title };
 }
 
 export function request(data) {
-  console.log("req data " + data);
   return { type: REQUEST, data };
 }
 
@@ -61,5 +83,11 @@ function switchAction(json, data, dispatch) {
 function paintElement(data) {
   let idd = data.id.toString().replace("#", "");
   let el = document.getElementById(idd);
-  el && el.setAttribute("stroke", "red");
+  el && el.setAttribute("stroke", "#F2C94C");
+}
+
+function unpaintElement(data) {
+  let idd = data.id.toString().replace("#", "");
+  let el = document.getElementById(idd);
+  el && el.setAttribute("stroke", "");
 }

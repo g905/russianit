@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Element = ({ id, onClick, title }) => (
-  <li onClick={onClick}>
-    {id} : {title}
+const Element = ({ idx, onClick, title }) => (
+  <li>
+    {title}
+    <span class="removeElement" onClick={onClick}>
+      &times;
+    </span>
   </li>
 );
 

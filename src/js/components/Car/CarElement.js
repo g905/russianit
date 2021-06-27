@@ -1,6 +1,6 @@
 import React from "react";
 
-const CarElement = ({ title, svg, u }) => {
+const CarElement = ({ title, svg }) => {
   return Object.assign({}, svg, {});
 };
 

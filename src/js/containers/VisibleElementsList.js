@@ -15,9 +15,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onElementClick: (id) => {
-      let idd = id.toString().replace("#", "");
-      let el = document.getElementById(idd);
-      el && el.setAttribute("stroke", "");
       dispatch(removeElement({ id: id }));
     },
   };
