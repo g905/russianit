@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "polyfill";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import store from "./js/store";
+import { addEl, removeElement, fetchStatus } from "./js/actions";
+import App from "./js/components/App";
+import "./index.css";
+
+console.log(store.getState());
+
+//const unsubscribe = store.subscribe(() => console.log(store.getState()));
+
+//store.dispatch(addEl({ id: 1, title: "test" }));
+//store.dispatch(addElement({ id: 2, title: "test2" }));
+//store.dispatch(addElement({ id: 3, title: "test3" }));
+console.log(store.getState());
+//store.dispatch(removeElement({ id: 1, title: "test" }));
+//console.log(store.getState());
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
