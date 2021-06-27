@@ -40,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
     zoomIn: (svg) => {
       dispatch(zoomIn(svg));
     },
+    zoomOut: (svg) => {
+      dispatch(zoomOut(svg));
+    },
   };
 };
 

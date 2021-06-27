@@ -17,6 +17,10 @@ export function zoomIn(svg) {
   refresh(svg);
   return {
     type: ZOOM_IN,
+    zoom: {
+      w: (store.getState().zoom.w += (store.getState().zoom.w / 100) * 5),
+      h: (store.getState().zoom.h += (store.getState().zoom.h / 100) * 5),
+    },
   };
 }
 
@@ -24,6 +28,10 @@ export function zoomOut(svg) {
   refresh(svg);
   return {
     type: ZOOM_OUT,
+    zoom: {
+      w: (store.getState().zoom.w -= (store.getState().zoom.w / 100) * 5),
+      h: (store.getState().zoom.h -= (store.getState().zoom.h / 100) * 5),
+    },
   };
 }
 

@@ -23,24 +23,13 @@ const initialState = {
 };
 
 function elements(state = initialState, action) {
-  let zW, zH;
   switch (action.type) {
     case ZOOM_IN:
-      zW = state.zoom.w += (state.zoom.w / 100) * 5;
-      zH = state.zoom.h += (state.zoom.h / 100) * 5;
-      return Object.assign({}, state, {
-        zoom: {
-          w: zW,
-          h: zH,
-        },
-      });
     case ZOOM_OUT:
-      zW = state.zoom.w -= (state.zoom.w / 100) * 5;
-      zH = state.zoom.h -= (state.zoom.h / 100) * 5;
       return Object.assign({}, state, {
         zoom: {
-          w: zW,
-          h: zH,
+          w: action.zoom.w,
+          h: action.zoom.h,
         },
       });
     case REQUEST:
